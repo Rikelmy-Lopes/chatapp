@@ -16,10 +16,11 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.glassfish/jakarta.faces -->
 		<dependency>
 			<groupId>org.glassfish</groupId>
-			<artifactId>javax.faces</artifactId>
-			<version>2.2.13</version>
+			<artifactId>jakarta.faces</artifactId>
+			<version>2.3.21</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
@@ -30,27 +31,46 @@
 		</dependency>
 
 		<!--
-		https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api -->
+		https://mvnrepository.com/artifact/jakarta.websocket/jakarta.websocket-api -->
 		<dependency>
-			<groupId>javax.websocket</groupId>
-			<artifactId>javax.websocket-api</artifactId>
-			<version>1.1</version>
+			<groupId>jakarta.websocket</groupId>
+			<artifactId>jakarta.websocket-api</artifactId>
+			<version>1.1.2</version>
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/javax.inject/javax.inject -->
+		<!--
+		https://mvnrepository.com/artifact/jakarta.inject/jakarta.inject-api -->
 		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>1</version>
+			<groupId>jakarta.inject</groupId>
+			<artifactId>jakarta.inject-api</artifactId>
+			<version>1.0.5</version>
+		</dependency>
+		
+				<!--
+		https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-api -->
+		<dependency>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-api</artifactId>
+			<version>8.0.0</version>
+			<scope>provided</scope>
 		</dependency>
 
+		<!--
+		https://mvnrepository.com/artifact/jakarta.enterprise/jakarta.enterprise.cdi-api -->
+		<dependency>
+			<groupId>jakarta.enterprise</groupId>
+			<artifactId>jakarta.enterprise.cdi-api</artifactId>
+			<version>2.0.2</version>
+		</dependency>
+
+		<!--
+		https://mvnrepository.com/artifact/org.jboss.weld.servlet/weld-servlet-core -->
 		<dependency>
 			<groupId>org.jboss.weld.servlet</groupId>
-			<artifactId>weld-servlet</artifactId>
-			<version>2.3.3.Final</version>
+			<artifactId>weld-servlet-core</artifactId>
+			<version>2.4.8.Final</version>
 		</dependency>
-
 
 		<!--
 		https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
@@ -67,22 +87,6 @@
 			<artifactId>jackson-datatype-jsr310</artifactId>
 			<version>2.19.0</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>7.0</version>
-			<scope>provided</scope>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/javax.enterprise/cdi-api -->
-<dependency>
-    <groupId>javax.enterprise</groupId>
-    <artifactId>cdi-api</artifactId>
-    <version>1.2</version>
-    <scope>provided</scope>
-</dependency>
 
 
 	</dependencies>
