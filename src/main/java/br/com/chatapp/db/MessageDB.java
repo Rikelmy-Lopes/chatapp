@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ApplicationScoped;
+import javax.enterprise.context.ApplicationScoped;
 
 import br.com.chatapp.dto.MessageBody;
 
 @ApplicationScoped
 public class MessageDB implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   private static final MessageDB INSTANCE = new MessageDB();
   private List<MessageBody> messages = new ArrayList<>();
 

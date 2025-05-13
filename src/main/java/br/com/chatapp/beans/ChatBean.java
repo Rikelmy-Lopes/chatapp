@@ -12,6 +12,8 @@ import br.com.chatapp.service.ChatWebSocketService;
 @Named("chatBean")
 @ViewScoped
 public class ChatBean implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   @Inject private ChatWebSocketService chatWebSocketService;
   @Inject FacesContext facesContext;
   private String name = "";

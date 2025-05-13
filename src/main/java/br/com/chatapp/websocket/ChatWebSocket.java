@@ -19,6 +19,8 @@ import br.com.chatapp.websocket.session.UsersSession;
 @ServerEndpoint("/websocket/chat")
 public class ChatWebSocket implements Serializable {
 
+  private static final long serialVersionUID = 1L;
+
   private JsonParser jsonParser = new JsonParser();
   private UsersSession usersSession = UsersSession.getInstance();
   private MessageDB messageDB = MessageDB.getInstance();

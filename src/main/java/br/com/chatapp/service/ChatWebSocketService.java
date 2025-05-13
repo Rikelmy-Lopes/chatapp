@@ -14,6 +14,7 @@ import br.com.chatapp.websocket.event.WebsocketEventType;
 import br.com.chatapp.websocket.model.WebSocketEvent;
 
 public class ChatWebSocketService implements Serializable {
+  private static final long serialVersionUID = 1L;
   @Inject private ChatWebSocket socket;
   @Inject private MessageDB messageDB;
   private JsonParser jsonParser = new JsonParser();

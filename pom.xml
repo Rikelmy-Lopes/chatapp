@@ -9,11 +9,14 @@
 	<name>chatapp Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
+
+		<!--
+		https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-api -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-api</artifactId>
+			<version>8.0.0</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.glassfish/jakarta.faces -->
@@ -27,41 +30,7 @@
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>8.0</version>
-		</dependency>
-
-		<!--
-		https://mvnrepository.com/artifact/jakarta.websocket/jakarta.websocket-api -->
-		<dependency>
-			<groupId>jakarta.websocket</groupId>
-			<artifactId>jakarta.websocket-api</artifactId>
-			<version>1.1.2</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<!--
-		https://mvnrepository.com/artifact/jakarta.inject/jakarta.inject-api -->
-		<dependency>
-			<groupId>jakarta.inject</groupId>
-			<artifactId>jakarta.inject-api</artifactId>
-			<version>1.0.5</version>
-		</dependency>
-		
-				<!--
-		https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-api -->
-		<dependency>
-			<groupId>jakarta.platform</groupId>
-			<artifactId>jakarta.jakartaee-api</artifactId>
-			<version>8.0.0</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<!--
-		https://mvnrepository.com/artifact/jakarta.enterprise/jakarta.enterprise.cdi-api -->
-		<dependency>
-			<groupId>jakarta.enterprise</groupId>
-			<artifactId>jakarta.enterprise.cdi-api</artifactId>
-			<version>2.0.2</version>
+			<version>13.0.10</version>
 		</dependency>
 
 		<!--
@@ -88,7 +57,12 @@
 			<version>2.19.0</version>
 		</dependency>
 
-
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>chatapp</finalName>

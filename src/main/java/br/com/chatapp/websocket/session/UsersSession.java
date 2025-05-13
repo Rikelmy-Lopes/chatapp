@@ -4,11 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ApplicationScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.websocket.Session;
 
 @ApplicationScoped
 public class UsersSession implements Serializable {
+
+  private static final long serialVersionUID = 1L;
   private static final UsersSession INSTANCE = new UsersSession();
   private List<Session> sessions = new ArrayList<>();
 

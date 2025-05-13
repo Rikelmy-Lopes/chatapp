@@ -8,6 +8,8 @@ import javax.faces.context.FacesContext;
 
 public class FacesContextProducer implements Serializable {
 
+  private static final long serialVersionUID = 1L;
+
   @RequestScoped
   @Produces
   public FacesContext getFacesContext() {
