@@ -8,30 +8,27 @@
 <h:head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Document</title>
+	<title>ChatApp</title>
 	<h:outputStylesheet library="css" name="style.css" />
 	<h:outputScript library="js" name="index.js" />
 
 </h:head>
 <body>
-	<div id="messages">
-		<div class="message">
-			<span>Nome: Rikelmy</span>
-			<div class="message-text-hour">
-				<span>Boa tarde</span> <span class="message-hour">12:00</span>
-			</div>
-		</div>
-	</div>
+	<div id="messages"></div>
 	<h:form>
 		<p:fieldset legend="Enviar Mensagem">
 			<h:panelGrid columns="2">
-
 				<p:outputLabel value="Nome: " for="name" />
-				<p:inputText id="name" value="#{chat.name}" />
+				<p:inputText id="name" value="#{chatBean.name}">
+					<p:ajax event="keyup" update="sendBtn" />
+				</p:inputText>
 				<p:outputLabel value="Mensagem: " for="message" />
-				<p:inputText id="message" value="#{chat.message}" />
-				<p:commandButton update="message" value="Enviar"
-					action="#{chat.enviar}" />
+				<p:inputText id="message" value="#{chatBean.message}">
+					<p:ajax event="keyup" update="sendBtn" />
+				</p:inputText>
+				<p:commandButton id="sendBtn" update="message" value="Enviar"
+					action="#{chatBean.send}"
+					disabled="#{chatBean.isButtonSendDisabled()}" />
 			</h:panelGrid>
 		</p:fieldset>
 	</h:form>

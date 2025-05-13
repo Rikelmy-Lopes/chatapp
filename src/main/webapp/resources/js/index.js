@@ -3,8 +3,9 @@ const chatWebSocket = new WebSocket(
 );
 
 chatWebSocket.onmessage = ({ data }) => {
-	const { data: receivedMessages } = JSON.parse(data);
-	console.log(receivedMessages)
+	const { data: receivedMessages, eventType: event } = JSON.parse(data);
+	console.log(receivedMessages);
+	console.log(event);
 	handleIncomingMessages(receivedMessages);
 };
 
@@ -49,8 +50,15 @@ function renderMessageList(messageArray) {
 
 function renderSingleMessage(messageObject) {
 	const messageContainer = document.querySelector("#messages");
-	const { name, message } = messageObject;
-	const messageElement = createMessageElement(name, message);
-	messageContainer.appendChild(messageElement);
+	const { name, message, hour } = messageObject;
+//	const messageElement = createMessageElement(name, message);
+	messageContainer.innerHTML += `
+	<div class="message">
+		<span>Nome: ${name}</span>
+		<div class="message-text-hour">
+			<span class="message-text">${message}</span> 
+			<span class="message-hour">${hour}</span>
+		</div>
+	</div>`
 	scrollToBottom(messageContainer);
 }
