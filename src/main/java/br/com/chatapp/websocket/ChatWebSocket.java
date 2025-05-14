@@ -28,6 +28,7 @@ public class ChatWebSocket implements Serializable {
   @OnOpen
   public void onOpen(Session session) {
     this.usersSession.add(session);
+
     WebSocketEvent<List<MessageBody>> webSocketEvent =
         new WebSocketEvent<>(WebsocketEventType.NEW_CONNECTION, this.messageDB.getAll());
     String json = this.jsonParser.objectToString(webSocketEvent);

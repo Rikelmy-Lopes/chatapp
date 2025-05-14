@@ -25,9 +25,9 @@ public class JsonParser implements Serializable {
     }
   }
 
-  public <T> T stringToObject(String json, Class<T> clazz) {
+  public <T> T stringToObject(String json, Class<T> valueType) {
     try {
-      return this.om.readValue(json, clazz);
+      return this.om.readValue(json, valueType);
     } catch (JsonMappingException e) {
       throw new RuntimeException(e);
     } catch (JsonProcessingException e) {
