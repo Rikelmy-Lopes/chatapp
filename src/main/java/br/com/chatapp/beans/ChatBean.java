@@ -7,6 +7,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.hibernate.SessionFactory;
+
 import br.com.chatapp.service.ChatWebSocketService;
 
 @Named("chatBean")
@@ -16,6 +18,7 @@ public class ChatBean implements Serializable {
 
   @Inject private ChatWebSocketService chatWebSocketService;
   @Inject FacesContext facesContext;
+  @Inject SessionFactory sessionFactory;
   private String name = "";
   private String message = "";
 
