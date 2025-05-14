@@ -3,6 +3,7 @@ package br.com.chatapp.beans;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,11 +16,11 @@ import br.com.chatapp.model.User;
 @SessionScoped
 public class LoginBean implements Serializable {
   private static final long serialVersionUID = 1L;
-
-  private String email;
-  private String password;
   @Inject private UserDAO userDAO;
   @Inject private FacesContext facesContext;
+
+  private String email = "";
+  private String password = "";
 
   public String login() {
     User user = this.userDAO.findByEmailAndPassword(this.email, this.password);
@@ -30,6 +31,8 @@ public class LoginBean implements Serializable {
       httpSession.setAttribute("user", user);
       return "chat?faces-redirect=true";
     } else {
+      this.facesContext.addMessage(
+          null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Usuário não encontrado!"));
       return "login";
     }
   }

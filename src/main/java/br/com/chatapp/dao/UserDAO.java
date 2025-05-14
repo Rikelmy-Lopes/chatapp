@@ -17,13 +17,17 @@ public class UserDAO implements Serializable {
 
   public User findByEmailAndPassword(String email, String password) {
     Session session = this.sessionFactory.openSession();
-    Query<User> query =
-        session.createQuery(
-            "from User u where u.email = :pEmail and u.password = :pPassword", User.class);
+    try {
+      Query<User> query =
+          session.createQuery(
+              "from User u where u.email = :pEmail and u.password = :pPassword", User.class);
 
-    query.setParameter("pEmail", email);
-    query.setParameter("pPassword", password);
+      query.setParameter("pEmail", email);
+      query.setParameter("pPassword", password);
 
-    return query.getSingleResult();
+      return query.getSingleResult();
+    } catch (Exception e) {
+      return null;
+    }
   }
 }

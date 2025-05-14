@@ -17,16 +17,12 @@
 	<div id="messages"></div>
 	<h:form>
 		<p:fieldset legend="Enviar Mensagem">
-			<h:panelGrid columns="2">
-				<p:outputLabel value="Nome: " for="name" />
-				<p:inputText id="name" value="#{chatBean.name}">
-					<p:ajax event="keyup" update="sendBtn" />
-				</p:inputText>
+			<h:panelGrid columns="3">
 				<p:outputLabel value="Mensagem: " for="message" />
 				<p:inputText id="message" value="#{chatBean.message}">
 					<p:ajax event="keyup" update="sendBtn" />
 				</p:inputText>
-				<p:commandButton id="sendBtn" update="message" value="Enviar"
+				<p:commandButton id="sendBtn" update="@this message" value="Enviar"
 					action="#{chatBean.send}"
 					disabled="#{chatBean.isButtonSendDisabled()}" />
 			</h:panelGrid>

@@ -11,20 +11,25 @@
 	<title>Login</title>
 
 </h:head>
-<body>
-	<h:form>
-		<p:fieldset legend="Login">
-			<h:panelGrid columns="2">
-				<p:outputLabel value="Email: " for="email" />
-				<p:inputText type="email" id="email" value="#{loginBean.email}">
-				</p:inputText>
-				<p:outputLabel value="Senha: " for="password" />
-				<p:inputText type="password" id="password" value="#{loginBean.password}">
-				</p:inputText>
-				<p:commandButton id="sendBtn" value="Login"
-					action="#{loginBean.login}" />
-			</h:panelGrid>
-		</p:fieldset>
-	</h:form>
-</body>
+<h:body style="margin:0; height:100vh;">
+	<div
+		style="display: flex; justify-content: center; align-items: center; height: 100%;">
+		<h:form>
+			<p:growl id="growl" showDetail="true" life="3000" />
+			<p:fieldset legend="Login">
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Email: " for="email" />
+					<p:inputText type="email" id="email" value="#{loginBean.email}" placeholder="email@example.com">
+					</p:inputText>
+					<p:outputLabel value="Senha: " for="password" />
+					<p:inputText type="password" id="password"
+						value="#{loginBean.password}" placeholder="********">
+					</p:inputText>
+					<p:commandButton update="growl" id="sendBtn" value="Login"
+						action="#{loginBean.login}" />
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
+	</div>
+</h:body>
 </html>

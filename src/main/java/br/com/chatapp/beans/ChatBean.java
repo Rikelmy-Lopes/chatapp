@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import org.hibernate.SessionFactory;
 
+import br.com.chatapp.model.User;
 import br.com.chatapp.service.ChatWebSocketService;
 
 @Named("chatBean")
@@ -19,16 +20,7 @@ public class ChatBean implements Serializable {
   @Inject private ChatWebSocketService chatWebSocketService;
   @Inject FacesContext facesContext;
   @Inject SessionFactory sessionFactory;
-  private String name = "";
   private String message = "";
-
-  public String getName() {
-    return this.name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
 
   public String getMessage() {
     return this.message;
@@ -39,11 +31,13 @@ public class ChatBean implements Serializable {
   }
 
   public boolean isButtonSendDisabled() {
-    return !(this.name.length() > 2 && this.message.length() > 0);
+    return !(this.message.length() > 0);
   }
 
   public void send() {
-    this.chatWebSocketService.sendAll(this.name, this.message);
+    User user = (User) this.facesContext.getExternalContext().getSessionMap().get("user");
+
+    this.chatWebSocketService.sendAll(user.getName(), this.message);
     this.message = "";
   }
 }
