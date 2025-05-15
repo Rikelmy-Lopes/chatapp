@@ -10,10 +10,10 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import br.com.chatapp.db.MessageDB;
-import br.com.chatapp.dto.MessageBody;
-import br.com.chatapp.util.JsonParser;
+import br.com.chatapp.dto.MessageBodyDTO;
+import br.com.chatapp.util.JsonParserUtil;
+import br.com.chatapp.websocket.dto.WebSocketDTO;
 import br.com.chatapp.websocket.event.WebsocketEventType;
-import br.com.chatapp.websocket.model.WebSocketEvent;
 import br.com.chatapp.websocket.session.UsersSession;
 
 @ServerEndpoint("/websocket/chat")
@@ -21,7 +21,7 @@ public class ChatWebSocket implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  private JsonParser jsonParser = new JsonParser();
+  private JsonParserUtil jsonParser = new JsonParserUtil();
   private UsersSession usersSession = UsersSession.getInstance();
   private MessageDB messageDB = MessageDB.getInstance();
 
@@ -29,8 +29,8 @@ public class ChatWebSocket implements Serializable {
   public void onOpen(Session session) {
     this.usersSession.add(session);
 
-    WebSocketEvent<List<MessageBody>> webSocketEvent =
-        new WebSocketEvent<>(WebsocketEventType.NEW_CONNECTION, this.messageDB.getAll());
+    WebSocketDTO<List<MessageBodyDTO>> webSocketEvent =
+        new WebSocketDTO<>(WebsocketEventType.NEW_CONNECTION, this.messageDB.getAll());
     String json = this.jsonParser.objectToString(webSocketEvent);
     this.send(json, session);
   }

@@ -5,16 +5,16 @@ import java.time.LocalTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
-public class MessageBody {
+public class MessageBodyDTO {
   private String name;
   private String message;
 
   @JsonFormat(pattern = "HH:mm", shape = Shape.STRING)
   private LocalTime hour;
 
-  public MessageBody() {}
+  public MessageBodyDTO() {}
 
-  public MessageBody(String name, String message, LocalTime hour) {
+  public MessageBodyDTO(String name, String message, LocalTime hour) {
     this.name = name;
     this.message = message;
     this.hour = hour;

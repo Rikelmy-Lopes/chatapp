@@ -9,32 +9,33 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
-import br.com.chatapp.dao.UserDAO;
+import br.com.chatapp.model.Result;
 import br.com.chatapp.model.User;
+import br.com.chatapp.service.LoginService;
 
 @Named("loginBean")
 @SessionScoped
 public class LoginBean implements Serializable {
   private static final long serialVersionUID = 1L;
-  @Inject private UserDAO userDAO;
   @Inject private FacesContext facesContext;
+  @Inject private LoginService loginService;
 
   private String email = "";
   private String password = "";
 
   public String login() {
-    User user = this.userDAO.findByEmailAndPassword(this.email, this.password);
+    Result<User, String> result = this.loginService.verifyCredentials(this.email, this.password);
 
-    if (user != null) {
-      HttpSession httpSession =
-          (HttpSession) this.facesContext.getExternalContext().getSession(false);
-      httpSession.setAttribute("user", user);
-      return "chat?faces-redirect=true";
-    } else {
+    if (result.isFailure()) {
       this.facesContext.addMessage(
-          null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Usuário não encontrado!"));
+          null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", result.getError()));
       return "login";
     }
+
+    HttpSession httpSession =
+        (HttpSession) this.facesContext.getExternalContext().getSession(false);
+    httpSession.setAttribute("user", result.getValue());
+    return "chat?faces-redirect=true";
   }
 
   public String getEmail() {

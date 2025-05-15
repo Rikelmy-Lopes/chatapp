@@ -2,12 +2,11 @@ package br.com.chatapp.beans;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import org.hibernate.SessionFactory;
 
 import br.com.chatapp.model.User;
 import br.com.chatapp.service.ChatWebSocketService;
@@ -19,8 +18,13 @@ public class ChatBean implements Serializable {
 
   @Inject private ChatWebSocketService chatWebSocketService;
   @Inject FacesContext facesContext;
-  @Inject SessionFactory sessionFactory;
+  private User user;
   private String message = "";
+
+  @PostConstruct
+  public void init() {
+    this.user = (User) this.facesContext.getExternalContext().getSessionMap().get("user");
+  }
 
   public String getMessage() {
     return this.message;
@@ -35,9 +39,8 @@ public class ChatBean implements Serializable {
   }
 
   public void send() {
-    User user = (User) this.facesContext.getExternalContext().getSessionMap().get("user");
 
-    this.chatWebSocketService.sendAll(user.getName(), this.message);
+    this.chatWebSocketService.sendAll(this.user.getName(), this.message);
     this.message = "";
   }
 }

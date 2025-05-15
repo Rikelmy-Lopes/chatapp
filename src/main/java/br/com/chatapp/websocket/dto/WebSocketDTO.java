@@ -1,12 +1,12 @@
-package br.com.chatapp.websocket.model;
+package br.com.chatapp.websocket.dto;
 
 import br.com.chatapp.websocket.event.WebsocketEventType;
 
-public class WebSocketEvent<T> {
+public class WebSocketDTO<T> {
   private WebsocketEventType eventType;
   private T data;
 
-  public WebSocketEvent(WebsocketEventType eventType, T data) {
+  public WebSocketDTO(WebsocketEventType eventType, T data) {
     this.eventType = eventType;
     this.data = data;
   }
