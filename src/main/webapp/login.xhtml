@@ -17,17 +17,38 @@
 		<h:form>
 			<p:growl id="growl" showDetail="true" life="3000" />
 			<p:fieldset legend="Login">
-				<h:panelGrid columns="2">
-					<p:outputLabel value="Email: " for="email" />
-					<p:inputText type="email" id="email" value="#{loginBean.email}" placeholder="email@example.com">
-					</p:inputText>
-					<p:outputLabel value="Senha: " for="password" />
-					<p:inputText type="password" id="password"
-						value="#{loginBean.password}" placeholder="********">
-					</p:inputText>
-					<p:commandButton update="growl" id="sendBtn" value="Login"
-						action="#{loginBean.login}" />
-				</h:panelGrid>
+				<div class="card">
+
+					<div class="field grid">
+						<p:outputLabel value="Email: " for="email" />
+						<div class="col">
+							<p:inputText type="email" id="email" value="#{loginBean.email}"
+								placeholder="email@example.com" />
+						</div>
+					</div>
+
+					<div class="field grid">
+						<p:outputLabel value="Senha: " for="password" />
+						<div class="col">
+							<p:inputText type="password" id="password"
+								value="#{loginBean.password}" placeholder="********" />
+						</div>
+					</div>
+
+					<h:panelGrid>
+						<p:commandButton update="growl" id="sendBtn" value="Login"
+							action="#{loginBean.login}" />
+					</h:panelGrid>
+
+					<div class="formgroup-inline">
+						<div class="field grid">
+							<span>Não tem uma conta?</span>
+							<p:commandLink value="Registre-se"
+								action="register?faces-redirect=true" ajax="false" />
+						</div>
+					</div>
+					
+				</div>
 			</p:fieldset>
 		</h:form>
 	</div>

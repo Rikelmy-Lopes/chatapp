@@ -25,12 +25,14 @@ public class AuthorizationFilter implements Filter {
     HttpSession httpSession = req.getSession(false);
     String uri = req.getRequestURI();
 
-    if (uri.contains("login.xhtml") || uri.contains("javax.faces.resource")) {
-      chain.doFilter(request, response);
-      return;
-    }
+    boolean isLoggedIn = httpSession != null && httpSession.getAttribute("user") != null;
+    boolean isLoginPage = uri.contains("login.xhtml");
+    boolean isRegisterPage = uri.contains("register.xhtml");
+    boolean isResourceRequest = uri.contains("javax.faces.resource");
 
-    if (httpSession != null && httpSession.getAttribute("user") != null) {
+    if ((isLoginPage || isRegisterPage) && isLoggedIn) {
+      res.sendRedirect(req.getContextPath() + "/chat.xhtml");
+    } else if (isLoginPage || isRegisterPage || isResourceRequest || isLoggedIn) {
       chain.doFilter(request, response);
     } else {
       res.sendRedirect(req.getContextPath() + "/login.xhtml");
