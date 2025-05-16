@@ -2,17 +2,23 @@ package br.com.chatapp.beans;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
+
+import br.com.chatapp.model.Result;
+import br.com.chatapp.model.User;
+import br.com.chatapp.service.RegisterService;
 
 @Named("registerBean")
-@ViewScoped
+@SessionScoped
 public class RegisterBean implements Serializable {
   private static final long serialVersionUID = 1L;
   @Inject FacesContext facesContext;
+  @Inject RegisterService registerService;
 
   private String name;
   private String username;
@@ -20,14 +26,30 @@ public class RegisterBean implements Serializable {
   private String password;
   private String confPassword;
 
-  public void register() {
+  public String register() {
     if (!this.password.equals(this.confPassword)) {
       this.facesContext.addMessage(
           null,
           new FacesMessage(
               FacesMessage.SEVERITY_WARN,
-              "Senhas diferrentes!",
+              "Senhas diferentes!",
               "Ambas as senhas devem ser iguais!"));
+      return "register";
+    }
+
+    Result<User, String> result =
+        this.registerService.registerUser(this.name, this.username, this.email, this.password);
+
+    if (result.isFailure()) {
+      this.facesContext.addMessage(
+          null,
+          new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao cadastrar", result.getError()));
+      return "register";
+    } else {
+      HttpSession httpSession =
+          (HttpSession) this.facesContext.getExternalContext().getSession(false);
+      httpSession.setAttribute("user", result.getValue());
+      return "chat?faces-redirect=true";
     }
   }
 
