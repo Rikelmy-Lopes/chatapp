@@ -17,7 +17,7 @@ public class ChatBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Inject private ChatWebSocketService chatWebSocketService;
-  @Inject FacesContext facesContext;
+  @Inject private FacesContext facesContext;
   private User user;
   private String message = "";
 

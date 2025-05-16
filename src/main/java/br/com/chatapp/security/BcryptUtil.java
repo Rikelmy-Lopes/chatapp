@@ -1,4 +1,4 @@
-package br.com.chatapp.util;
+package br.com.chatapp.security;
 
 import java.io.Serializable;
 

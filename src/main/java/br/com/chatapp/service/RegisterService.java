@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import br.com.chatapp.dao.UserDAO;
 import br.com.chatapp.model.Result;
 import br.com.chatapp.model.User;
-import br.com.chatapp.util.BcryptUtil;
+import br.com.chatapp.security.BcryptUtil;
 
 public class RegisterService implements Serializable {
 
