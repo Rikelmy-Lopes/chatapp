@@ -7,11 +7,13 @@ import javax.inject.Inject;
 import br.com.chatapp.dao.UserDAO;
 import br.com.chatapp.model.Result;
 import br.com.chatapp.model.User;
+import br.com.chatapp.util.BcryptUtil;
 
 public class RegisterService implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  @Inject UserDAO userDAO;
+  @Inject private UserDAO userDAO;
+  @Inject private BcryptUtil bcryptUtil;
 
   public Result<User, String> registerUser(
       String name, String username, String email, String password) {
@@ -23,7 +25,9 @@ public class RegisterService implements Serializable {
       return Result.fail("Esse username ja foi utilizado!");
     }
 
-    User user = this.userDAO.save(new User(name, username, email, password));
+    String hashedPassword = this.bcryptUtil.hashPassword(password);
+
+    User user = this.userDAO.save(new User(name, username, email, hashedPassword));
     return Result.ok(user);
   }
 }

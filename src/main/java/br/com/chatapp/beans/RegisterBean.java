@@ -17,8 +17,8 @@ import br.com.chatapp.service.RegisterService;
 @SessionScoped
 public class RegisterBean implements Serializable {
   private static final long serialVersionUID = 1L;
-  @Inject FacesContext facesContext;
-  @Inject RegisterService registerService;
+  @Inject private FacesContext facesContext;
+  @Inject private RegisterService registerService;
 
   private String name;
   private String username;

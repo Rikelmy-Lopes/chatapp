@@ -7,10 +7,12 @@ import javax.inject.Inject;
 import br.com.chatapp.dao.UserDAO;
 import br.com.chatapp.model.Result;
 import br.com.chatapp.model.User;
+import br.com.chatapp.util.BcryptUtil;
 
 public class LoginService implements Serializable {
   private static final long serialVersionUID = 1L;
   @Inject private UserDAO userDAO;
+  @Inject private BcryptUtil bcryptUtil;
 
   public Result<User, String> verifyCredentials(String email, String password) {
     User user = this.userDAO.findByEmail(email);
@@ -19,7 +21,7 @@ public class LoginService implements Serializable {
       return Result.fail("Usuario não encontrado!");
     }
 
-    if (!user.getPassword().equals(password)) {
+    if (!this.bcryptUtil.verifyPassword(password, user.getPassword())) {
       return Result.fail("Senha incorreta!");
     }
 
