@@ -13,20 +13,24 @@
 	<h:outputScript library="js" name="chat.js" />
 
 </h:head>
-<body>
-	<div id="messages"></div>
-	<h:form>
-		<p:fieldset legend="Enviar Mensagem">
-			<h:panelGrid columns="3">
-				<p:outputLabel value="Mensagem: " for="message" />
-				<p:inputText id="message" value="#{chatBean.message}">
-					<p:ajax event="keyup" update="sendBtn" />
-				</p:inputText>
-				<p:commandButton id="sendBtn" update="@this message" value="Enviar"
-					action="#{chatBean.send}"
-					disabled="#{chatBean.isButtonSendDisabled()}" />
-			</h:panelGrid>
-		</p:fieldset>
-	</h:form>
-</body>
+<h:body>
+	<ui:composition template="./template-header.xhtml">
+		<ui:define name="body">
+			<div id="messages"></div>
+			<h:form>
+				<p:fieldset legend="Enviar Mensagem">
+					<h:panelGrid columns="3">
+						<p:outputLabel value="Mensagem: " for="message" />
+						<p:inputText id="message" value="#{chatBean.message}">
+							<p:ajax event="keyup" update="sendBtn" />
+						</p:inputText>
+						<p:commandButton id="sendBtn" update="@this message"
+							value="Enviar" action="#{chatBean.send}"
+							disabled="#{chatBean.isButtonSendDisabled()}" />
+					</h:panelGrid>
+				</p:fieldset>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
 </html>

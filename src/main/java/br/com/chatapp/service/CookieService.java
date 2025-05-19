@@ -29,4 +29,8 @@ public class CookieService implements Serializable {
     cookie.setMaxAge(expiry);
     res.addCookie(cookie);
   }
+
+  public void remove(HttpServletResponse res, String name) {
+    this.add(res, name, "", true, 0);
+  }
 }

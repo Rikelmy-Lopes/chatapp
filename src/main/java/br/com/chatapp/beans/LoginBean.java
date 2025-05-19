@@ -44,7 +44,7 @@ public class LoginBean implements Serializable {
     String token = this.jwtService.create(user.getId(), user.getName());
     HttpServletResponse res =
         (HttpServletResponse) this.facesContext.getExternalContext().getResponse();
-    this.cookieService.add(res, "jwt_token", token, true, 10);
+    this.cookieService.add(res, "jwt_token", token, true, 60 * 10);
 
     HttpSession httpSession = (HttpSession) this.facesContext.getExternalContext().getSession(true);
     httpSession.setAttribute("user", user);

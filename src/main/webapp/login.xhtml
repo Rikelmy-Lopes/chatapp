@@ -11,46 +11,50 @@
 	<title>Login</title>
 
 </h:head>
-<h:body style="margin:0; height:100vh;">
-	<div
-		style="display: flex; justify-content: center; align-items: center; height: 100%;">
-		<h:form>
-			<p:growl id="growl" showDetail="true" life="3000" />
-			<p:fieldset legend="Login">
-				<div class="card">
+<h:body>
+	<ui:composition template="./template-header.xhtml">
+		<ui:define name="body">
+			<div
+				style="display: flex; justify-content: center; align-items: center; height: 100%;">
+				<h:form>
+					<p:growl id="growl" showDetail="true" life="3000" />
+					<p:fieldset legend="Login">
+						<div class="card">
 
-					<div class="field grid">
-						<p:outputLabel value="Email: " for="email" />
-						<div class="col">
-							<p:inputText type="email" id="email" value="#{loginBean.email}"
-								placeholder="email@example.com" />
+							<div class="field grid">
+								<p:outputLabel value="Email: " for="email" />
+								<div class="col">
+									<p:inputText type="email" id="email" value="#{loginBean.email}"
+										placeholder="email@example.com" />
+								</div>
+							</div>
+
+							<div class="field grid">
+								<p:outputLabel value="Senha: " for="password" />
+								<div class="col">
+									<p:inputText type="password" id="password"
+										value="#{loginBean.password}" placeholder="********" />
+								</div>
+							</div>
+
+							<h:panelGrid>
+								<p:commandButton update="growl" id="sendBtn" value="Login"
+									action="#{loginBean.login}" />
+							</h:panelGrid>
+
+							<div class="formgroup-inline">
+								<div class="field grid">
+									<span>Não tem uma conta?</span>
+									<p:commandLink value="Registre-se"
+										action="register?faces-redirect=true" ajax="false" />
+								</div>
+							</div>
+
 						</div>
-					</div>
-
-					<div class="field grid">
-						<p:outputLabel value="Senha: " for="password" />
-						<div class="col">
-							<p:inputText type="password" id="password"
-								value="#{loginBean.password}" placeholder="********" />
-						</div>
-					</div>
-
-					<h:panelGrid>
-						<p:commandButton update="growl" id="sendBtn" value="Login"
-							action="#{loginBean.login}" />
-					</h:panelGrid>
-
-					<div class="formgroup-inline">
-						<div class="field grid">
-							<span>Não tem uma conta?</span>
-							<p:commandLink value="Registre-se"
-								action="register?faces-redirect=true" ajax="false" />
-						</div>
-					</div>
-					
-				</div>
-			</p:fieldset>
-		</h:form>
-	</div>
+					</p:fieldset>
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

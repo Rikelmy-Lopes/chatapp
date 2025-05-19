@@ -18,7 +18,7 @@ public class JwtService implements Serializable {
   private JWTVerifier verifier = JWT.require(this.algorithm).withIssuer(this.ISSUER).build();
 
   public String create(Long userId, String userName) {
-    Date expiresAt = Date.from(Instant.now().plus(10, ChronoUnit.SECONDS));
+    Date expiresAt = Date.from(Instant.now().plus(10, ChronoUnit.MINUTES));
     return JWT.create()
         .withIssuer(this.ISSUER)
         .withClaim("userId", userId)
