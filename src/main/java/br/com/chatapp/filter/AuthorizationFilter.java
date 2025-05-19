@@ -32,6 +32,7 @@ public class AuthorizationFilter implements Filter {
     Cookie cookie = this.cookieService.get(req, "jwt_token");
 
     boolean isLoggedIn = cookie != null ? this.jwtService.verify(cookie.getValue()) != null : false;
+    System.out.println(isLoggedIn);
     boolean isLoginPage = uri.contains("login.xhtml");
     boolean isRegisterPage = uri.contains("register.xhtml");
     boolean isResourceRequest = uri.contains("javax.faces.resource");

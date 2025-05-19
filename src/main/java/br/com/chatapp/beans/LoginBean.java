@@ -40,14 +40,14 @@ public class LoginBean implements Serializable {
     }
 
     User user = result.getValue();
+
     String token = this.jwtService.create(user.getId(), user.getName());
     HttpServletResponse res =
         (HttpServletResponse) this.facesContext.getExternalContext().getResponse();
-    this.cookieService.add(res, "jwt_token", token, true, 60 * 10);
+    this.cookieService.add(res, "jwt_token", token, true, 10);
 
-    HttpSession httpSession =
-        (HttpSession) this.facesContext.getExternalContext().getSession(false);
-    httpSession.setAttribute("user", result.getValue());
+    HttpSession httpSession = (HttpSession) this.facesContext.getExternalContext().getSession(true);
+    httpSession.setAttribute("user", user);
     return "chat?faces-redirect=true";
   }
 

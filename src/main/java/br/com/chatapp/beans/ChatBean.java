@@ -39,7 +39,6 @@ public class ChatBean implements Serializable {
   }
 
   public void send() {
-
     this.chatWebSocketService.sendAll(this.user.getName(), this.message);
     this.message = "";
   }
